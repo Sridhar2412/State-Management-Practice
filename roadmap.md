@@ -18,13 +18,13 @@
 
 ## 3. State Management
 
-- [ ] [Riverpod](#riverpod)
+- [x] [Riverpod](#riverpod)
 
 ## 4. DI
 
-- [ ] [Inherited Widget](#inherited-widget)
-- [ ] [Get_it](#get_it)
-- [ ] [Injectable](#injectable)
+- [x] [Inherited Widget](#inherited-widget)
+- [x] [Get_it](#get_it)
+- [x] [Injectable](#injectable)
 
 ## 5. UI
 
@@ -950,6 +950,7 @@ Here's a reference image showing the use cases of all three methods of `WidgetRe
       int build() {
         return 0;
       }
+
 
       void changePage(int data) {
         state = data;

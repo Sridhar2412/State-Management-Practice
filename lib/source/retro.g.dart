@@ -8,8 +8,8 @@ part of 'retro.dart';
 
 // ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers
 
-class _RestClient implements RestClient {
-  _RestClient(
+class _Apiservices implements Apiservices {
+  _Apiservices(
     this._dio, {
     this.baseUrl,
   });
@@ -19,34 +19,35 @@ class _RestClient implements RestClient {
   String? baseUrl;
 
   @override
-  Future<Product> addProduct(Product product) async {
+  Future<User> addIUser(User user) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final _data = product;
+    final _data = <String, dynamic>{};
+    _data.addAll(user.toJson());
     final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<Product>(Options(
+        await _dio.fetch<Map<String, dynamic>>(_setStreamType<User>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
             .compose(
               _dio.options,
-              '/products/add',
+              '/users/add',
               queryParameters: queryParameters,
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = Product.fromJson(_result.data!);
+    final value = User.fromJson(_result.data!);
     return value;
   }
 
   @override
-  Future<ListUsers> getPosts() async {
+  Future<ListUsers> getUser() async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final Map<String, dynamic>? _data = null;
+    const Map<String, dynamic>? _data = null;
     final _result = await _dio
         .fetch<Map<String, dynamic>>(_setStreamType<ListUsers>(Options(
       method: 'GET',
