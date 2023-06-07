@@ -29,29 +29,29 @@ class Increment extends _$Increment {
   }
 }
 
-// abstract class WebsocketClient {
-//   Stream<int> getCounterStream();
-// }
+abstract class WebsocketClient {
+  Stream<int> getCounterStream();
+}
 
-// class FakeWebsocketClient implements WebsocketClient {
-//   @override
-//   Stream<int> getCounterStream() async* {
-//     int i = 0;
-//     while (true) {
-//       await Future.delayed(const Duration(milliseconds: 500));
-//       yield i++;
-//     }
-//   }
-// }
-// final websocketClientProvider = Provider<WebsocketClient>(
-//   (ref) {
-//     return FakeWebsocketClient();
-//   },
-// );
-// final counterProvider = StreamProvider<int>((ref) {
-//   final wsClient = ref.watch(websocketClientProvider);
-//   return wsClient.getCounterStream();
-// });
+class FakeWebsocketClient implements WebsocketClient {
+  @override
+  Stream<int> getCounterStream() async* {
+    int i = 0;
+    while (true) {
+      await Future.delayed(const Duration(milliseconds: 500));
+      yield i++;
+    }
+  }
+}
+final websocketClientProvider = Provider<WebsocketClient>(
+  (ref) {
+    return FakeWebsocketClient();
+  },
+);
+final counterProvider = StreamProvider<int>((ref) {
+  final wsClient = ref.watch(websocketClientProvider);
+  return wsClient.getCounterStream();
+});
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -90,8 +90,8 @@ class _MyHomePageState extends ConsumerState<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     final newName = TextEditingController();
-    // final state = ref.watch(counterProvider).value;
-    final state = ref.watch(incrementProvider);
+    final state = ref.watch(counterProvider).value;
+    // final state = ref.watch(incrementProvider);
 
     return Scaffold(
       appBar: AppBar(
