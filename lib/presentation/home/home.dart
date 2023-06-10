@@ -76,34 +76,34 @@ class _MyHomePageState extends State<MyHomePage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                // TextFormField(
-                //   controller: nameController,
-                //   keyboardType: TextInputType.text,
-                //   onChanged: (value) {},
-                //   decoration: InputDecoration(
-                //     border: OutlineInputBorder(
-                //         borderRadius: BorderRadius.circular(20)),
-                //     hintText: "Name",
-                //   ),
-                // ),
-                ElevatedButton(
-                    onPressed: () {
-                      // print("hello");
-                      notificationServices.sendNotification(
-                          "News", "Sridhar here");
-                    },
-                    child: const Text("Send")),
-                // ElevatedButton(onPressed: () {}, child: const Text("Schedule")),
+                TextFormField(
+                  controller: nameController,
+                  keyboardType: TextInputType.text,
+                  onChanged: (value) {},
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20)),
+                    hintText: "Name",
+                  ),
+                ),
                 // ElevatedButton(
-                //     onPressed: () async {
-                //       ref
-                //           .read(nameProvider.notifier)
-                //           .setName(nameController.text);
-                //       final prefs = await SharedPreferences.getInstance();
-                //       prefs.setString(KEYNAME, nameController.text);
+                //     onPressed: () {
+                //       // print("hello");
+                //       notificationServices.sendNotification(
+                //           "News", "Sridhar here");
                 //     },
-                //     child: const Text("Save")),
-                // Text(newName),
+                //     child: const Text("Send")),
+                // ElevatedButton(onPressed: () {}, child: const Text("Schedule")),
+                ElevatedButton(
+                    onPressed: () async {
+                      ref
+                          .read(nameProvider.notifier)
+                          .setName(nameController.text);
+                      final prefs = await SharedPreferences.getInstance();
+                      prefs.setString(KEYNAME, nameController.text);
+                    },
+                    child: const Text("Save")),
+                Text(newName),
                 // Text(
                 //   '$_counter',
                 //   style: Theme.of(context).textTheme.headlineMedium,
